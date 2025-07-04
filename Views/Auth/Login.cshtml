@@ -1,0 +1,23 @@
+﻿@model LMS_UI.DTOs.LoginDTO
+@{
+    ViewData["Title"] = "Login";
+}
+
+<h2>Login</h2>
+
+<form asp-action="Login" method="post">
+    <div>
+        <label asp-for="userName"></label>
+        <input asp-for="userName" class="form-control" />
+        <span asp-validation-for="userName" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="userPassword"></label>
+        <input asp-for="userPassword" type="password" class="form-control" />
+        <span asp-validation-for="userPassword" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-primary">Login</button>
+</form>
+

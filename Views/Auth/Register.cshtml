@@ -1,0 +1,23 @@
+﻿@model LMS_UI.DTOs.RegisterDTO
+@{
+    ViewData["Title"] = "Register";
+}
+
+<h2>Register</h2>
+
+<form asp-action="Register" method="post">
+    <div>
+        <label asp-for="userName"></label>
+        <input asp-for="userName" class="form-control" />
+        <span asp-validation-for="userName" class="text-danger"></span>
+    </div>
+
+    <div>
+        <label asp-for="userPassword"></label>
+        <input asp-for="userPassword" type="password" class="form-control" />
+        <span asp-validation-for="userPassword" class="text-danger"></span>
+    </div>
+
+    <button type="submit" class="btn btn-success">Register</button>
+</form>
+
