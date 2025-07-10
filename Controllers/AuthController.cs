@@ -40,6 +40,7 @@ namespace LMS_UI.Controllers
 
             HttpContext.Session.SetString("AccessToken", responseData.Token);
             HttpContext.Session.SetString("Role", responseData.Role);
+            HttpContext.Session.SetString("Username", loginDTO.userName);
 
             var claims = new List<Claim>
             {

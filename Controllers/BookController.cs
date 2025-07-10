@@ -128,9 +128,10 @@ namespace LMS_UI.Controllers
         [HttpPost]
         public async Task<IActionResult> Return(int id)
         {
+            //check
             AddAuthToken();
-            var response = await _httpClient.PostAsync($"{_apiBase}/api/book/return/{id}", null);
-            if (!response.IsSuccessStatusCode) return BadRequest();
+            var request = new HttpRequestMessage(HttpMethod.Post, $"{_apiBase}/api/book/return/{id}");
+            var response = await _httpClient.SendAsync(request);
             return RedirectToAction("Index");
         }
     }
