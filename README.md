@@ -68,8 +68,8 @@ LibraryManagementSystem_UI/
 
 ### 1. Clone the UI Repository
 
-git clone https://github.com/your-username/LibraryManagementSystem_UI.git
-cd LibraryManagementSystem_UI
+# git clone https://github.com/Prince-Derrek/LMS_UI.git
+# cd LibraryManagementSystem_UI
 
 ### 2. Prerequisites
 .NET 8 SDK
