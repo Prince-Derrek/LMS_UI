@@ -43,11 +43,6 @@ LibraryManagementSystem_UI/
 │
 ├── appsettings.json # Stores API base URL
 └── Program.cs / Startup.cs # Middleware, session, and authentication setup
-
-pgsql
-Copy
-Edit
-
 ---
 
 ## ✅ Features
@@ -75,44 +70,38 @@ Edit
 
 git clone https://github.com/your-username/LibraryManagementSystem_UI.git
 cd LibraryManagementSystem_UI
-2. Prerequisites
+
+### 2. Prerequisites
 .NET 8 SDK
 
 Node.js (for Tailwind CSS, if styling from scratch)
 
 API Project must be running with the correct JWT setup
 
-3. Configure API Base URL
+### 3. Configure API Base URL
 Open appsettings.json and update:
-
-json
-Copy
-Edit
 "ApiSettings": {
   "BaseUrl": "https://localhost:your-api-port"
 }
-4. Run the Project
-bash
-Copy
-Edit
+### 4. Run the Project
 dotnet run
 Navigate to: http://localhost:your-ui-port
 
-🛡 Login Credentials
+### 🛡 Login Credentials
 Use existing credentials from your API database. To test:
 
 Register a new user
 
 Use login to receive and store JWT for session
 
-✍️ Notes
+### ✍️ Notes
 JWT tokens are stored in session and passed via Authorization headers
 
 Views are rendered conditionally based on the logged-in user's role
 
 All protected actions are secured from the UI by checking the role and enforcing in the API
 
-📌 Future Improvements
+### 📌 Future Improvements
 Add toast notifications for feedback
 
 Improve responsive design with Tailwind
