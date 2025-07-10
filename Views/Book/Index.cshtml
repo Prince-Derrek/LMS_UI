@@ -1,0 +1,75 @@
+﻿@model IEnumerable<LMS_UI.Models.ViewModels.BookViewModel>
+
+@{
+    ViewData["Title"] = "Index";
+}
+
+<h1>Book Management</h1>
+
+@{
+    var role = Context.Session.GetString("Role");
+}
+
+@if (role == "Admin")
+{
+    <a class="btn btn-success" asp-controller="Book" asp-action="Create">+ Add New Book</a>
+}
+
+<table class="table">
+    <thead>
+        <tr>
+            <th>#</th>
+            <th>Title</th>
+            <th>Author</th>
+            <th>Status</th>
+            <th>Borrowed By</th>
+            <th>Borrowed At</th>
+            <th>Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@item.bookId</td>
+                <td>@item.bookTitle</td>
+                <td>@item.bookAuthor</td>
+                <td>
+                    @(item.isBorrowed ? "Borrowed" : "Available")
+                </td>
+                <td>
+                    @(item.borrowedBy ?? "-")
+                </td>
+                <td>
+                    @(item.borrowedAt?.ToString("dd MMM yyyy HH:mm") ?? "-")
+                </td>
+                <td>
+                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.bookId">View</a>
+
+                </td>
+                <td>
+                        @if (role == "Admin")
+                        {
+
+                            @Html.ActionLink("Edit", "Edit", new { id = item.bookId }) <br>
+                            @Html.ActionLink("Delete", "Delete", new { id = item.bookId })
+
+                        }
+                        else if (role == "User" && item.isBorrowed == false)
+                        {
+                            <form method="post" asp-controller="Book" asp-action="Borrow" asp-route-id="@item.bookId">
+                            <button type="submit" class="btn btn-primary btn-sm">Borrow</button>
+                            </form>
+                        }
+                        else if (role == "User" && item.isBorrowed && item.borrowedBy == Context.Session.GetString("Username"))
+                        {
+                            <form method="post" asp-controller="Book" asp-action="Return" asp-route-id="@item.bookId">
+                            <button type="submit" class="btn btn-warning btn-sm">Return</button>
+                            </form>
+                        }
+                </td>
+            </tr>
+        }
+    </tbody>
+
+</table>

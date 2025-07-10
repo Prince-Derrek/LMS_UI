@@ -1,5 +1,7 @@
 ﻿using LMS_UI.DTOs;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
+using System.Security.Claims;
 using System.Text;
 using System.Text.Json;
 
@@ -26,7 +28,7 @@ namespace LMS_UI.Controllers
             var json = JsonSerializer.Serialize(loginDTO);
             var content = new StringContent(json, Encoding.UTF8, "application/json");
 
-            var response = await _httpClient.PostAsync("auth/login", content);
+            var response = await _httpClient.PostAsync("/api/auth/login", content);
 
             if (!response.IsSuccessStatusCode)
             {
@@ -37,8 +39,20 @@ namespace LMS_UI.Controllers
             var responseData = await response.Content.ReadFromJsonAsync<AuthResponseDTO>();
 
             HttpContext.Session.SetString("JWToken", responseData.Token);
-            HttpContext.Session.SetString("Username", loginDTO.userName);
             HttpContext.Session.SetString("Role", responseData.Role);
+
+            var claims = new List<Claim>
+            {
+                new Claim(ClaimTypes.Name, loginDTO.userName),
+                new Claim(ClaimTypes.Role, responseData.Role),
+                new Claim("AccessToken", responseData.Token)
+
+            };
+
+            var identity = new ClaimsIdentity(claims, "MyCookieAuth");
+            var principal = new ClaimsPrincipal(identity);
+
+            await HttpContext.SignInAsync("MyCookieAuth", principal);
 
             return responseData.Role == "Admin"
                 ? RedirectToAction("Index", "AdminDashboard")

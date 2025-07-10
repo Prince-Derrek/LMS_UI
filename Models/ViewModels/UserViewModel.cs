@@ -1,14 +1,14 @@
-﻿namespace LMS_UI.Models
+﻿namespace LMS_UI.Models.ViewModels
 {
-    public class User
+    public class UserViewModel
     {
         public int userID
         { get; set; }
         public string userName
         { get; set; }
-        public string userPassword
+        public string passwordHash
         { get; set; }
         public string userRole
-        { get; set; } = "User";
+        { get; set; }
     }
 }
