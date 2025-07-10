@@ -6,7 +6,7 @@ namespace LMS_UI.Controllers
     {
         public IActionResult Index()
         {
-            return RedirectToAction("Index", "Book");
+            return View();
         }
     }
 }

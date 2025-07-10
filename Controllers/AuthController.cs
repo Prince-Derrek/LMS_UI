@@ -38,7 +38,7 @@ namespace LMS_UI.Controllers
 
             var responseData = await response.Content.ReadFromJsonAsync<AuthResponseDTO>();
 
-            HttpContext.Session.SetString("JWToken", responseData.Token);
+            HttpContext.Session.SetString("AccessToken", responseData.Token);
             HttpContext.Session.SetString("Role", responseData.Role);
 
             var claims = new List<Claim>
