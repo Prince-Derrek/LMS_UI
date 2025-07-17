@@ -483,3 +483,30 @@ $RECYCLE.BIN/
 
 # Vim temporary swap files
 *.swp
+
+####################
+# Tailwind + Node  #
+####################
+
+# Node modules and package manager files
+node_modules/
+package-lock.json
+yarn.lock
+pnpm-lock.yaml
+
+# Tailwind/PostCSS cache and build outputs
+dist/
+.temp/
+.next/
+.turbo/
+.cache/
+
+# Final CSS build outputs (optional to ignore)
+wwwroot/css/*.map
+wwwroot/css/*.bundle.css
+wwwroot/css/*.bundle.min.css
+wwwroot/css/app.css
+wwwroot/css/app.min.css
+
+# LibMan and CDN packages
+wwwroot/lib/
