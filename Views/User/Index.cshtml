@@ -2,10 +2,9 @@
 
 @{
     ViewData["Title"] = "User Management";
+    Layout = "~/Views/AdminDashboard/Index.cshtml";
     var role = Context.Session.GetString("Role");
 }
-
-<h2>User Management</h2>
 
 @if (role == "Admin")
 {
@@ -14,31 +13,45 @@
     </p>
 }
 
-<table class="table table-bordered table-striped">
-    <thead class="table-dark">
-        <tr>
-            <th>@Html.DisplayNameFor(model => model.First().userID)</th>
-            <th>@Html.DisplayNameFor(model => model.First().userName)</th>
-            <th>@Html.DisplayNameFor(model => model.First().userRole)</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
-            <tr>
-                <td>@item.userID</td>
-                <td>@item.userName</td>
-                <td>@item.userRole</td>
-                <td>
-                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.userID">View</a>
 
-                </td>
-                <td>
-                    @Html.ActionLink("Edit", "Edit", new { id = item.userID }) <br>
-                    @Html.ActionLink("Delete", "Delete", new { id = item.userID })
-                </td>
+
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+            <tr>
+                <th scope="col" class="px-6 py-3">
+                    @Html.DisplayNameFor(model => model.First().userID)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    @Html.DisplayNameFor(model => model.First().userName)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    @Html.DisplayNameFor(model => model.First().userRole)
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Action
+                </th>
             </tr>
-        }
-    </tbody>
-</table>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                    <td class="px-6 py-4">
+                        @item.userID
+                    </td>
+                    <td class="px-6 py-4">
+                        @item.userName
+                    </td>
+                    <td class="px-6 py-4">
+                        @item.userRole
+                    </td>
+                    <td class="px-6 py-4">
+                        @Html.ActionLink("Edit", "Edit", new { id = item.userID }) <br>
+                        @Html.ActionLink("Delete", "Delete", new { id = item.userID })
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
