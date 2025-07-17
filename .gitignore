@@ -510,3 +510,5 @@ wwwroot/css/app.min.css
 
 # LibMan and CDN packages
 wwwroot/lib/
+
+tailwindcss-windows-x64.exe
