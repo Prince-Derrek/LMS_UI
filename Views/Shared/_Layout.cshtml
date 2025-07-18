@@ -6,7 +6,11 @@
     <title>@ViewData["Title"] - LMS_UI</title>
     <link rel="stylesheet" href="~/css/site.css" asp-append-version="true" />
 </head>
+<<<<<<< HEAD
+<body class="flex flex-col min-h-screen">
+=======
 <body class=" flex flex-col min-h-screen">
+>>>>>>> admindash
     <header>
         @{
             var layoutType = ViewBag.LayoutType as string;
@@ -47,10 +51,17 @@
             </nav>
         }
     </header>
+<<<<<<< HEAD
+
+        <main role="main" class="flex-grow">
+            @RenderBody()
+        </main>
+=======
     
     <main role="main" class="flex-grow">
             @RenderBody()
     </main>
+>>>>>>> admindash
 
 
 
