@@ -7,8 +7,8 @@
 }
 
 <div class=" overflow-x-auto shadow-md sm:rounded-lg">
-    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
-        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-50">
+        <thead class="text-xs text-white uppercase bg-gray-800 hover:bg-gray-900 focus:outline-none focus:ring-4 focus:ring-gray-300 font-medium rounded-full text-sm px-5 py-2.5 me-2 mb-2 dark:bg-gray-800 dark:hover:bg-gray-700 dark:focus:ring-gray-700 dark:border-gray-700">
             <tr>
                 <th scope="col" class="px-6 py-3">
                     @Html.DisplayNameFor(model => model.First().userID)
@@ -19,7 +19,7 @@
                 <th scope="col" class="px-6 py-3">
                     @Html.DisplayNameFor(model => model.First().userRole)
                 </th>
-                <th scope="col" class="px-6 py-3">
+                <th class="px-6 py-3">
                     Action
                 </th>
             </tr>
@@ -27,7 +27,7 @@
         <tbody>
             @foreach (var item in Model)
             {
-                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                <tr class=" text-black bg-gradient-to-r from-purple-500 to-pink-500 hover:bg-gradient-to-l focus:ring-4 focus:outline-none focus:ring-purple-200 dark:focus:ring-purple-800 border-b dark:border-black">
                     <td class="px-6 py-4">
                         @item.userID
                     </td>
