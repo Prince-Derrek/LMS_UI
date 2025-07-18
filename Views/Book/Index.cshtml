@@ -1,10 +1,9 @@
 ﻿@model IEnumerable<LMS_UI.Models.ViewModels.BookViewModel>
 
 @{
-    ViewData["Title"] = "Index";
+    ViewData["Title"] = "Manage Books";
+    Layout = "~/Views/Shared/_LayoutAdmin.cshtml";
 }
-
-<h1>Book Management</h1>
 
 @{
     var role = Context.Session.GetString("Role");
@@ -15,39 +14,59 @@
     <a class="btn btn-success" asp-controller="Book" asp-action="Create">+ Add New Book</a>
 }
 
-<table class="table">
-    <thead>
-        <tr>
-            <th>#</th>
-            <th>Title</th>
-            <th>Author</th>
-            <th>Status</th>
-            <th>Borrowed By</th>
-            <th>Borrowed At</th>
-            <th>Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        @foreach (var item in Model)
-        {
+<div class="relative overflow-x-auto shadow-md sm:rounded-lg">
+    <table class="w-full text-sm text-left rtl:text-right text-gray-500 dark:text-gray-400">
+        <thead class="text-xs text-gray-700 uppercase bg-gray-50 dark:bg-gray-700 dark:text-gray-400">
             <tr>
-                <td>@item.bookId</td>
-                <td>@item.bookTitle</td>
-                <td>@item.bookAuthor</td>
-                <td>
-                    @(item.isBorrowed ? "Borrowed" : "Available")
-                </td>
-                <td>
-                    @(item.borrowedBy ?? "-")
-                </td>
-                <td>
-                    @(item.borrowedAt?.ToString("dd MMM yyyy HH:mm") ?? "-")
-                </td>
-                <td>
-                    <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.bookId">View</a>
-
-                </td>
-                <td>
+                <th scope="col" class="px-6 py-3">
+                    #
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Title
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Author
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Status
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Borrowed By
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Borrowed At
+                </th>
+                <th scope="col" class="px-6 py-3">
+                    Actions
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var item in Model)
+            {
+                <tr class="bg-white border-b dark:bg-gray-800 dark:border-gray-700 border-gray-200">
+                    <td class="px-6 py-4">
+                        @item.bookId
+                    </td>
+                    <td class="px-6 py-4">
+                        @item.bookTitle
+                    </td>
+                    <td class="px-6 py-4">
+                        @item.bookAuthor
+                    </td>
+                    <td class="px-6 py-4">
+                        @(item.isBorrowed ? "Borrowed" : "Available")
+                    </td>
+                    <td class="px-6 py-4">
+                        @(item.borrowedBy ?? "-")
+                    </td>
+                    <td class="px-6 py-4">
+                        @(item.borrowedAt?.ToString("dd MMM yyyy HH:mm") ?? "-")
+                    </td>
+                    <td class="px-6 py-4">
+                        <a class="btn btn-info btn-sm" asp-action="Details" asp-route-id="@item.bookId">View</a>
+                    </td>
+                    <td class="px-6 py-4">
                         @if (role == "Admin")
                         {
 
@@ -67,9 +86,9 @@
                             <button type="submit" class="btn btn-warning btn-sm">Return</button>
                             </form>
                         }
-                </td>
-            </tr>
-        }
-    </tbody>
-
-</table>
+                    </td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
